@@ -1,5 +1,4 @@
 import { RuleConfigSeverity } from '@commitlint/types'
-console.log('cui')
 export default {
     extends: ['@commitlint/config-conventional'],
     rules: {

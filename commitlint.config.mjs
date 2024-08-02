@@ -1,3 +1,3 @@
 export default {
-    extends: ['./packages/commitlint/index'],
+    extends: ['@nomo/commitlint'],
 }
