@@ -1,0 +1,28 @@
+{
+    "name": "nomo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "prepare": "husky",
+        "format": "prettier -w .",
+        "commit:lint": "commitlint --edit",
+        "lint:stage": "lint-staged"
+    },
+    "lint-staged": {
+        "*": [
+            "prettier --write"
+        ]
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@commitlint/cli": "^19.3.0",
+        "@commitlint/config-conventional": "^19.2.2",
+        "@commitlint/types": "^19.0.3",
+        "husky": "^9.1.4",
+        "lint-staged": "^15.2.7",
+        "prettier": "^3.3.3"
+    }
+}
