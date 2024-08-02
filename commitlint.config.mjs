@@ -1,3 +1,3 @@
 export default {
-    extends: ['./packages/commitlint-config/index'],
+    extends: ['./packages/commitlint/index'],
 }
