@@ -9,4 +9,5 @@ export default defineUserConfig({
     lang: 'zh-CN',
     title: '你好， 崔云翔 ！',
     description: '学习记录',
+    base: '/docs/',
 })
