@@ -1,5 +1,5 @@
 {
-    "name": "nomo-commitlint",
+    "name": "@nomo/commitlint2",
     "version": "1.0.3",
     "description": "",
     "main": "index.js",
