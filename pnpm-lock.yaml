@@ -7,24 +7,21 @@ settings:
 importers:
     .:
         devDependencies:
+            '@c1007568349/commitlint':
+                specifier: workspace:^
+                version: link:packages/commitlint
             '@commitlint/cli':
                 specifier: ^19.3.0
                 version: 19.3.0(@types/node@22.0.2)(typescript@5.5.4)
             '@commitlint/config-conventional':
                 specifier: ^19.2.2
                 version: 19.2.2
-            '@nomo/commitlint2':
-                specifier: workspace:^
-                version: link:packages/commitlint2
             husky:
                 specifier: ^9.1.4
                 version: 9.1.4
             lint-staged:
                 specifier: ^15.2.7
                 version: 15.2.7
-            nomo-commitlint:
-                specifier: workspace:^
-                version: link:packages/commitlint
             prettier:
                 specifier: ^3.3.3
                 version: 3.3.3

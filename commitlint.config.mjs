@@ -1,3 +1,3 @@
 export default {
-    extends: ['@nomo/commitlint2'],
+    extends: ['@c1007568349/commitlint'],
 }
