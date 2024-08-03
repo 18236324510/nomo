@@ -1,5 +1,5 @@
 {
-    "name": "@nomo",
+    "name": "nomo",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -8,7 +8,9 @@
         "prepare": "husky",
         "format": "prettier -w .",
         "commit:lint": "commitlint --edit",
-        "lint:stage": "lint-staged"
+        "lint:stage": "lint-staged",
+        "docs:dev": "pnpm -C docs docs:dev",
+        "docs:build": "pnpm -C docs docs:build"
     },
     "lint-staged": {
         "*": [
