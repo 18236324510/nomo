@@ -5,6 +5,7 @@ import path from 'path'
 import fs from 'fs'
 import { execSync } from 'child_process'
 import getNpmType from '../utils/npmType'
+import generate from '../utils/generate'
 
 /**
  * 是否添加cui commitlit
@@ -29,10 +30,14 @@ const init = async (options: InitOptions) => {
 
     // 初始化 commitlint
     config.cui = await chooseEslintType()
-    const pkgPath = path.resolve(cwd, 'package.json')
+    const pkgPath = path.resolve(cwd, './package.json')
     let pkg = JSON.parse(fs.readFileSync(pkgPath, { encoding: 'utf-8' }))
     pkg['scripts']['commit:lint'] = 'commitlint --edit'
     // 配置husky
+    console.log('----------------开始安装commitlint')
+    execSync(
+        `${npmType} add @commitlint/cli @commitlint/config-conventional -D`
+    )
     console.log('-------------开始安装husky')
     execSync(`${npmType} add husky -D`)
     console.log('------------------开始初始化husky')
@@ -41,6 +46,7 @@ const init = async (options: InitOptions) => {
     execSync(`echo "${npmType} run commit:lint" > .husky/pre-commit`)
     console.log('---------------开始写入package')
     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2))
+    generate(cwd)
     console.log('完成')
 }
 

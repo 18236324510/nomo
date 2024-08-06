@@ -1,22 +1,29 @@
 {
     "name": "yunxiang-cli",
-    "version": "1.0.0",
+    "version": "1.0.12",
     "description": "",
-    "bin": "index.ts",
+    "bin": {
+        "ccli": "./lib/cli.js",
+        "ch": "cli.ts"
+    },
     "scripts": {
-        "test": "ts-node cli.ts"
+        "test": "ts-node cli.ts",
+        "build": "tsc"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
         "@types/command-exists": "^1.2.3",
+        "@types/ejs": "^3.1.5",
         "@types/node": "^22.1.0"
     },
     "dependencies": {
         "@inquirer/type": "^1.5.1",
         "command-exists": "^1.2.9",
         "commander": "^12.1.0",
+        "ejs": "^3.1.10",
+        "glob": "^11.0.0",
         "inquirer": "^10.1.6",
         "ora": "^8.0.1"
     }

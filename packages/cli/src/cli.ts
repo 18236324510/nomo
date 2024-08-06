@@ -1,5 +1,5 @@
-// 比较当前版本
-// 获取当前版本
+#!/usr/bin/env node
+
 import { program } from 'commander'
 import { PKG_NAME, PKG_VERSION } from './utils/constants'
 import init from './actions/init'

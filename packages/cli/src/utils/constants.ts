@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 export const pkg = JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8')
+    fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')
 )
 
 /**
