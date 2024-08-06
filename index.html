@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.14" />
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+
+      html.dark {
+        --c-bg: #22272e;
+      }
+
+      html,
+      body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme')
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+
+      if (userMode === 'light') {
+        document.documentElement.dataset.theme = 'light'
+      } else if (userMode === 'dark' || systemDarkMode) {
+        document.documentElement.classList.toggle('dark', true)
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <title>1、搭建monorepo环境 | 你好， 崔云翔 ！</title><meta name="description" content="学习记录">
+    <link rel="preload" href="/nomo/assets/style-B7vuiJvb.css" as="style"><link rel="stylesheet" href="/nomo/assets/style-B7vuiJvb.css">
+    <link rel="modulepreload" href="/nomo/assets/app-CMVyIQ0z.js"><link rel="modulepreload" href="/nomo/assets/index.html-D5efCcJV.js">
+    <link rel="prefetch" href="/nomo/assets/404.html-BP9u9LgM.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="vp-theme-container external-link-icon"><!--[--><header class="vp-navbar"><div class="vp-toggle-sidebar-button" title="toggle sidebar" aria-expanded="false" role="button" tabindex="0"><div class="icon" aria-hidden="true"><span></span><span></span><span></span></div></div><span><a class="route-link" href="/nomo/"><!----><span class="vp-site-name" aria-hidden="true">你好， 崔云翔 ！</span></a></span><div class="vp-navbar-items-wrapper" style=""><!--[--><!--]--><!----><!--[--><!--]--><button class="vp-toggle-color-mode-button" title="toggle color mode"><svg class="light-icon" viewbox="0 0 32 32" style=""><path d="M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6z" fill="currentColor"></path><path d="M5.394 6.813l1.414-1.415l3.506 3.506L8.9 10.318z" fill="currentColor"></path><path d="M2 15.005h5v2H2z" fill="currentColor"></path><path d="M5.394 25.197L8.9 21.691l1.414 1.415l-3.506 3.505z" fill="currentColor"></path><path d="M15 25.005h2v5h-2z" fill="currentColor"></path><path d="M21.687 23.106l1.414-1.415l3.506 3.506l-1.414 1.414z" fill="currentColor"></path><path d="M25 15.005h5v2h-5z" fill="currentColor"></path><path d="M21.687 8.904l3.506-3.506l1.414 1.415l-3.506 3.505z" fill="currentColor"></path><path d="M15 2.005h2v5h-2z" fill="currentColor"></path></svg><svg class="dark-icon" viewbox="0 0 32 32" style="display:none;"><path d="M13.502 5.414a15.075 15.075 0 0 0 11.594 18.194a11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016a13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555a1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38A1.015 1.015 0 0 0 14.98 3z" fill="currentColor"></path></svg></button><!----></div></header><!--]--><div class="vp-sidebar-mask"></div><!--[--><aside class="vp-sidebar"><!----><!--[--><!--]--><ul class="vp-sidebar-items"><!--[--><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading">1、搭建monorepo环境 <!----></p><!----></li><!--]--></ul><!--[--><!--]--></aside><!--]--><!--[--><main class="vp-page"><!--[--><!--]--><div class="theme-default-content"><!--[--><!--]--><div><p><strong>git:</strong> <strong>https://github.com/18236324510/nomo</strong></p><h1 id="_1、搭建monorepo环境" tabindex="-1"><a class="header-anchor" href="#_1、搭建monorepo环境"><span>1、搭建monorepo环境</span></a></h1><p>我们使用<code>pnpm</code>当做包管理工具，用<code>pnpm workspace</code>来实现<code>monorepo</code>。可以看下面参考文章里面的介绍，结合官网有个基础的了解。下面我们正式开始搭建。</p><div class="language-Bash line-numbers-mode" data-highlighter="prismjs" data-ext="Bash" data-title="Bash"><pre><code><span class="line">npm install pnpm -g # 全局安装pnpm</span>
+<span class="line">pnpm init # 初始化package.json配置⽂件 私有库</span>
+<span class="line">pnpm install vue typescript -D # 全局下添加依赖</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>添加<code>.npmrc</code>文件，</p><div class="language-Bash line-numbers-mode" data-highlighter="prismjs" data-ext="Bash" data-title="Bash"><pre><code><span class="line">shamefully-hoist = true  // 作用依赖包都扁平化的安装在node_modules下面</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div></div></div><p>在项目根目录下面创建<code>pnpm-workspace.yaml</code>配置文件。</p><div class="language-Bash line-numbers-mode" data-highlighter="prismjs" data-ext="Bash" data-title="Bash"><pre><code><span class="line">packages:</span>
+<span class="line">  - &quot;packages/**&quot; # 存放所有组件</span>
+<span class="line">  - docs # 文档</span>
+<span class="line">  - play # 测试组件</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="https://gik72endpx.feishu.cn/space/api/box/stream/download/asynccode/?code=N2QyYmM4MTQ4MGM4NWQyMTNiZDUzZGFmNzQ5ODhkMGFfMVdVUEFlZ3JMaGtwakEzZVltQWI5UzVPclZSMUxsS1pfVG9rZW46VEhLVGIxY2Myb1dqQWJ4cDhnYWNNZENDbnVnXzE3MjI2NzM3NzU6MTcyMjY3NzM3NV9WNA" alt=""></p><p>嗯，让我来解释一下。在pnpm中，如果你在workspace的根目录下运行<code>pnpm add</code>命令添加一个包，pnpm会默认在workspace中的其他包中查找这个包。这意味着你不需要显式地添加<code>@workspace:*</code>来告诉pnpm在workspace中查找这个包。</p><p>所以，如果你在workspace根目录下运行<code>pnpm add cui-commitlint-config -D</code>，pnpm会自动在workspace中的其他包中查找并安装<code>cui-commitlint-config</code>这个包，而不需要额外添加<code>@workspace:*</code>。</p><p><strong>或者重新建个文件夹</strong></p><h1 id="_2、编写commitlint" tabindex="-1"><a class="header-anchor" href="#_2、编写commitlint"><span>2、编写commitlint</span></a></h1><div class="language-Bash line-numbers-mode" data-highlighter="prismjs" data-ext="Bash" data-title="Bash"><pre><code><span class="line">import { RuleConfigSeverity } from &#39;@commitlint/types&#39;</span>
+<span class="line">export default {</span>
+<span class="line">    extends: [&#39;@commitlint/config-conventional&#39;],</span>
+<span class="line">    rules: {</span>
+<span class="line">        &#39;type-enum&#39;: [</span>
+<span class="line">            RuleConfigSeverity.Error,</span>
+<span class="line">            &#39;always&#39;,</span>
+<span class="line">            [</span>
+<span class="line">                &#39;cui&#39;,</span>
+<span class="line">                &#39;build&#39;,</span>
+<span class="line">                &#39;chore&#39;,</span>
+<span class="line">                &#39;ci&#39;,</span>
+<span class="line">                &#39;docs&#39;,</span>
+<span class="line">                &#39;feat&#39;,</span>
+<span class="line">                &#39;fix&#39;,</span>
+<span class="line">                &#39;perf&#39;,</span>
+<span class="line">                &#39;refactor&#39;,</span>
+<span class="line">                &#39;revert&#39;,</span>
+<span class="line">                &#39;style&#39;,</span>
+<span class="line">                &#39;test&#39;,</span>
+<span class="line">            ],</span>
+<span class="line">        ],</span>
+<span class="line">    },</span>
+<span class="line">}</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在主包安装引用</p><div class="language-Bash line-numbers-mode" data-highlighter="prismjs" data-ext="Bash" data-title="Bash"><pre><code><span class="line">export default {</span>
+<span class="line">    extends: [&#39;@nomo/commitlint&#39;],</span>
+<span class="line">}</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="_3、发布" tabindex="-1"><a class="header-anchor" href="#_3、发布"><span>3、发布</span></a></h1><ol><li>设置npm源，org的</li><li>npm log</li><li>npm whoami</li><li>Npm publish</li></ol><p><img src="https://gik72endpx.feishu.cn/space/api/box/stream/download/asynccode/?code=NmU0YTUzYjE5MjkyOWQ4M2ZjYmUxY2U2NWUxN2FkNWJfcE1CZGFXZXp3ZTdsMW5IYm1ZS1lza3ZPbkFJSW0zUE1fVG9rZW46WEtwN2I2MWNob3VqUE94WEl3UWNmTEk2bjNiXzE3MjI2NzM3NzU6MTcyMjY3NzM3NV9WNA" alt=""></p><p>就是没登陆对</p><p><strong>npm登陆超时，网上大部分方法不靠谱！！！，就是网络原因</strong></p><h1 id="npm-publish包报404-is-not-in-the-npm-registry错误" tabindex="-1"><a class="header-anchor" href="#npm-publish包报404-is-not-in-the-npm-registry错误"><span>npm publish包报404，is not in the npm registry错误</span></a></h1><p>出现错误的原因是，我在npm上的用户名是A,而我的包名是 @B/xxxx。</p><p>npm规定包名中，@后是用户名，我这里是B，而我的用户名是A。这就是报错的原因。</p><p>解决办法也很简单，修改包名，或者用B的账号publish就可以了</p><h3 id="发布自己-开头的包" tabindex="-1"><a class="header-anchor" href="#发布自己-开头的包"><span>发布自己@开头的包</span></a></h3><p>https://www.npmjs.cn/misc/scope/</p><p>https://docs.npmjs.com/creating-and-publishing-scoped-public-packages</p><p><img src="https://gik72endpx.feishu.cn/space/api/box/stream/download/asynccode/?code=MmNmOTczNjIxMjAzM2Y1Y2IwYWQ1YWQxMmQ1NjE5YWJfY04zRlhBQWZJZ0ZCQldqeDZhN0NaWEtuck15elVYS3VfVG9rZW46QW5XcWJqZmFTb1FOU3J4Q1EwVmNYb3ZCbkplXzE3MjI2NzM3NzU6MTcyMjY3NzM3NV9WNA" alt=""></p><h2 id="npm-publish-access-public" tabindex="-1"><a class="header-anchor" href="#npm-publish-access-public"><span>npm publish --access public</span></a></h2><h1 id="_4-搭建文档站点" tabindex="-1"><a class="header-anchor" href="#_4-搭建文档站点"><span>4.搭建文档站点</span></a></h1><p><a href="https://vuepress.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">VuePress</a></p><p>启动报错</p><p><img src="https://gik72endpx.feishu.cn/space/api/box/stream/download/asynccode/?code=N2QyN2M2YzI2NDg1ZjY3ZjQ5ZmVhMzhjZGQ1Y2I4MGVfV3NRYVNlRld0YlM4ZEVNWlYyV21ySFd4TmdFdmxtbFdfVG9rZW46SDJzWmJxMzdrb25tc2l4NUlLdmNFSk5vbkJoXzE3MjI2NzM3NzU6MTcyMjY3NzM3NV9WNA" alt=""></p><p>https://github.com/vuejs/vuepress/issues/3218</p><p>更新完pnpm报错，需要再更新pnpm版本</p><div class="language-Bash line-numbers-mode" data-highlighter="prismjs" data-ext="Bash" data-title="Bash"><pre><code><span class="line">npm install pnpm -g</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div></div></div></div><!--[--><!--]--></div><footer class="vp-page-meta"><!----><div class="vp-meta-item git-info"><div class="vp-meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="vp-meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: 1007568349@qq.com">cuiyunxiang</span><!----><!--]--><!--]--></span></div></div></footer><!----><!--[--><!--]--></main><!--]--></div><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/nomo/assets/app-CMVyIQ0z.js" defer></script>
+  </body>
+</html>
