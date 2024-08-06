@@ -2,3 +2,4 @@
 .husky
 .npmrc
 .prettierignore
+*.ejs
