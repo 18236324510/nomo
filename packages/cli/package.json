@@ -1,0 +1,23 @@
+{
+    "name": "yunxiang-cli",
+    "version": "1.0.0",
+    "description": "",
+    "bin": "index.ts",
+    "scripts": {
+        "test": "ts-node cli.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/command-exists": "^1.2.3",
+        "@types/node": "^22.1.0"
+    },
+    "dependencies": {
+        "@inquirer/type": "^1.5.1",
+        "command-exists": "^1.2.9",
+        "commander": "^12.1.0",
+        "inquirer": "^10.1.6",
+        "ora": "^8.0.1"
+    }
+}
